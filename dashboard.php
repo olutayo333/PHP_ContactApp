@@ -12,7 +12,7 @@
     //FETCHING NOTE
     $query_contact= "SELECT * FROM contact_tb WHERE id = $id";
     $found_contact = $connect->query($query_contact);
-    $note = $found_contact->fetch_all();
+    $contacts = $found_contact->fetch_all(MYSQLI_ASSOC);
     //print_r($note);
     echo "</br>";
     ?>
@@ -55,14 +55,12 @@
             <div class="col-5 shadow  ">
                     <p class="display-4"> <b><u>Contacts</u></b></p>
                     <?php 
-                        
-                        foreach($note as $each ){
+                      //  print_r($note);
+                        foreach($contacts as $each ){
                             echo '</br>';
+                            echo '<div>'. "First Name: ".$each['firstName']. " ". "Last Name: ". $each['lastName']. " ". "Phone Number: ". $each['phoneNumber'] . '</div>';
                             
-                            foreach($each as $key=>$value){
-                                
-                                echo   " " . $value; 
-                            }
+                           
                         }
                     ?>
             </div>
